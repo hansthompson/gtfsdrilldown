@@ -33,14 +33,6 @@ gtfs_drilldown <- function(gtfs_obj, today = Sys.Date()) {
     mutate(trip_order_in_route = order(departure_time)) %>% # Order distiquishable routes.
     select(trip_order_in_route, trip_id, route_id, direction_id, departure_time) # Filter rows.
 
-  #routes <- all_stop_sequences$route_id
-  leaflet(all_stop_sequences %>% filter(route_id == "7", direction_id == 0)) %>%
-    addProviderTiles("Stamen.Toner") %>%
-    addCircles(lat = ~stop_lat, lng = ~stop_lon, popup = ~as.character(stop_sequence),
-               options =  popupOptions(closeButton = FALSE), fillOpacity = 1, stroke =FALSE, radius = 50) %>%
-    addPolylines(lat = ~stop_lat, lng = ~stop_lon)
-
-
   list(todays_service_id = todays_service_id,
        todays_trips = todays_trips,
        today_stop_times = today_stop_times,
