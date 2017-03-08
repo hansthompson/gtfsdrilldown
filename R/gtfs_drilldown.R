@@ -5,9 +5,9 @@ gtfs_drilldown <- function(gtfs_obj, today = Sys.Date()) {
   todays_service_id <-
     gtfs_obj$calendar_df %>% gather(day, yes, -service_id, -start_date, -end_date) %>%
     filter(yes == 1,
-           today() >=  ymd(start_date),
-           today() <= ymd(end_date),
-           tolower(strftime(today(), "%A")) == day) %>% .$service_id
+           today >=  ymd(start_date),
+           today <= ymd(end_date),
+           tolower(strftime(today, "%A")) == day) %>% .$service_id
 
   # Filter trip_ids for trips running today.
   todays_trips <- gtfs_obj$trips_df %>% filter(service_id == todays_service_id)
