@@ -37,6 +37,6 @@ gtfs_drilldown <- function(gtfs_obj, today = Sys.Date()) {
        todays_trips = todays_trips,
        today_stop_times = today_stop_times,
        all_stop_sequences = all_stop_sequences,
-       todays_trip_departures = todays_trip_departures)
-
+       todays_trip_departures = todays_trip_departures,
+       stops = gtfs_obj$stops_df)
 }
